@@ -4,10 +4,12 @@
   "description": "Browser extension to block Google One Tap sign-in and credential picker dialogs.",
   "main": "index.js",
   "scripts": {
-    "build": "echo \"Add your build steps here (e.g., bundling or zipping)\"",
-    "zip:chrome": "zip -r dist/block-google-credential-picker-chrome.zip chrome",
-    "zip:firefox": "zip -r dist/block-google-credential-picker-firefox.zip firefox",
-    "zip:all": "npm run zip:chrome && npm run zip:firefox"
+    "clean": "rimraf dist && mkdir dist",
+    "copy:chrome": "shx cp -R chrome dist/chrome",
+    "copy:firefox": "shx cp -R firefox dist/firefox",
+    "zip:chrome": "cross-zip dist/chrome dist/block-google-credential-picker-chrome.zip",
+    "zip:firefox": "cross-zip dist/firefox dist/block-google-credential-picker-firefox.zip",
+    "build": "npm run clean && npm run copy:chrome && npm run copy:firefox && node build.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +29,12 @@
     "url": "https://github.com/bacloud22/block-google-credential-picker/issues"
   },
   "homepage": "https://github.com/bacloud22/block-google-credential-picker#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "fs-extra": "^11.3.2",
+    "rimraf": "^6.0.1",
+    "shx": "^0.4.0",
+    "tslib": "^2.8.1",
+    "zip-a-folder": "^3.1.9"
+  }
 }
