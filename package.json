@@ -1,0 +1,31 @@
+{
+  "name": "block-google-credential-picker",
+  "version": "1.0.0",
+  "description": "Browser extension to block Google One Tap sign-in and credential picker dialogs.",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"Add your build steps here (e.g., bundling or zipping)\"",
+    "zip:chrome": "zip -r dist/block-google-credential-picker-chrome.zip chrome",
+    "zip:firefox": "zip -r dist/block-google-credential-picker-firefox.zip firefox",
+    "zip:all": "npm run zip:chrome && npm run zip:firefox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bacloud22/block-google-credential-picker.git"
+  },
+  "keywords": [
+    "browser-extension",
+    "chrome-extension",
+    "firefox-extension",
+    "google-one-tap",
+    "blocker",
+    "credential-picker"
+  ],
+  "author": "bacloud22",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bacloud22/block-google-credential-picker/issues"
+  },
+  "homepage": "https://github.com/bacloud22/block-google-credential-picker#readme",
+  "devDependencies": {}
+}

@@ -1,0 +1,1 @@
+// No logic needed — declarativeNetRequest handles blocking.
