@@ -3,6 +3,9 @@
 This browser extension blocks the Google One Tap sign-in popup and the credential picker window from appearing on websites.  
 It provides a cleaner browsing experience by removing the native Google sign-in prompt.
 
+![Google One Tap sign-in popup](.github/capture.webp?raw=true "Google One Tap sign-in popup")
+
+
 ## Features
 
 - Blocks the Google Credential Picker iframe
