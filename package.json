@@ -9,7 +9,8 @@
     "copy:firefox": "shx cp -R firefox dist/firefox",
     "zip:chrome": "cross-zip dist/chrome dist/block-google-credential-picker-chrome.zip",
     "zip:firefox": "cross-zip dist/firefox dist/block-google-credential-picker-firefox.zip",
-    "build": "npm run clean && npm run copy:chrome && npm run copy:firefox && node build.js"
+    "build": "npm run clean && npm run copy:chrome && npm run copy:firefox && node build.js",
+    "start:firefox": "web-ext run --source-dir ./firefox/"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "rimraf": "^6.0.1",
     "shx": "^0.4.0",
     "tslib": "^2.8.1",
+    "web-ext": "^9.0.0",
     "zip-a-folder": "^3.1.9"
   }
 }
