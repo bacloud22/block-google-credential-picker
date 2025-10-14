@@ -1,13 +1,471 @@
 <html>
- <head>
-   <title>Water Popup</title>
- </head>
- <body>
-     <img src="./stay_hydrated.png" id="hydrateImage">
-     <button id="sampleSecond" value="0.1">Sample Second</button>
-     <button id="min15" value="15">15 Minutes</button>
-     <button id="min30" value="30">30 Minutes</button>
-     <button id="cancelAlarm">Cancel Alarm</button>
-   <!-- <script src=""></script> -->
- </body>
+
+<head>
+    <title>Water Popup</title>
+    <style>
+        html,
+        body {
+            width: 300px;
+            height: 400px;
+            min-width: 300px;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        html {
+            box-sizing: border-box;
+            font-size: 10px;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+            position: relative;
+            tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            color: #3b3b3b;
+            font-size: 1.618rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+
+        .boxed {
+            margin: 0 auto;
+            margin-bottom: 5rem;
+            max-width: 90rem;
+            min-height: 50rem;
+            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.15), 0 -0.5rem 1rem 0 rgba(0, 0, 0, 0.033);
+        }
+
+        .padded {
+            padding: 2.5rem;
+        }
+
+        .padded--slightly {
+            padding: 1.618rem;
+        }
+
+        .centered-container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            max-width: 75%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .group:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .vertical-align-helper:before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-left: -5px;
+        }
+
+        .vertical-align-helper>[class*=vertical-align--] {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .text--centered {
+            text-align: center;
+        }
+
+        .vertical-align--middle {
+            vertical-align: middle;
+        }
+
+        /*
+---------------------------------------------------------
+| Exploring the Card Metaphor
+---------------------------------------------------------
+*/
+        body {
+            background-color: #1b1b1b;
+            background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/16584/space.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .centered-container {
+            perspective: 1000;
+        }
+
+        .card {
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transform: translateZ(1px);
+            transition: all 0.48s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .card.card--modern,
+        .card {
+            width: 24rem;
+            height: 34rem;
+        }
+
+        .card--rounded,
+        .card .card__back,
+        .card .card__front,
+        .card {
+            border-radius: 1.13rem;
+        }
+
+        .card.card--rotate-horizontally {
+            transform: rotateY(180deg);
+        }
+
+        .card .card__back,
+        .card .card__front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background-color: ghostwhite;
+            box-shadow: 0 3px 6px 0 rgba(22, 22, 22, 0.75);
+        }
+
+        .card .card__front {
+            z-index: 2;
+        }
+
+        .card .card__back {
+            z-index: 2;
+            transform: rotateY(180deg);
+        }
+
+        .card .card__header,
+        .card .card__footer {
+            line-height: 2.75;
+            height: 4.5rem;
+            width: 100%;
+            background-color: #d2d3d5;
+        }
+
+        .card .card__header {
+            z-index: 10;
+            border-bottom: 1px solid #999;
+            box-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.33);
+        }
+
+        .card .card__header .header__title {
+            display: inline-block;
+            font-size: 1.312rem;
+            font-weight: 500;
+            opacity: 0.75;
+            text-shadow: 0 1px 0 ghostwhite;
+        }
+
+        .card .card__header .header__icon {
+            position: absolute;
+            top: 0.5rem;
+            font-size: 1.412rem;
+            font-weight: 700;
+            opacity: 0.5;
+            cursor: pointer;
+            transition: opacity;
+            transition: 0.48s;
+        }
+
+        .card .card__header .header__icon--left {
+            left: 1.5rem;
+        }
+
+        .card .card__header .header__icon--right {
+            right: 1.5rem;
+        }
+
+        .card .card__header .header__icon:hover {
+            opacity: 1;
+        }
+
+        .card .card__footer {
+            position: absolute;
+            bottom: 0;
+            background-color: #d2d3d5;
+            border-top: 1px solid #999;
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.33);
+        }
+
+        .card .card__part {
+            height: 50%;
+            max-width: 100%;
+            background-color: inherit;
+            transition-property: transform, box-shadow;
+            transition-duration: 0.48s;
+        }
+
+        .card .does-trick--split .card__part {
+            z-index: 1;
+        }
+
+        .card .does-trick--split .card__part--middle {
+            z-index: 0;
+        }
+
+        .card .does-trick--split.opened .card__part .card__part-content {
+            opacity: 0.25;
+        }
+
+        .card .does-trick--split.opened .card__part--upper {
+            transform: translateY(-50%);
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .card .does-trick--split.opened .card__part--lower {
+            transform: translateY(50%);
+            box-shadow: 0 -2px 8px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .card+.card {
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+        }
+
+        .card+.card:nth-child(even) {
+            left: -10px;
+            background-color: silver;
+        }
+
+        .card+.card:nth-child(odd) {
+            right: -10px;
+            background-color: slategrey;
+        }
+
+        .card+.card:nth-child(3) {
+            top: -10px;
+        }
+
+        .card+.card:hover {
+            animation: aside 0.28s ease-in-out forwards;
+        }
+
+        @keyframes aside {
+            to {
+                left: -250px;
+            }
+        }
+
+        .card .h1,
+        .card .h2,
+        .card .h3,
+        .card .h4,
+        .card .h5 {
+            margin-bottom: 1.412rem;
+            font-weight: 700;
+        }
+
+        .card .h1.divider,
+        .card .h2.divider,
+        .card .h3.divider,
+        .card .h4.divider,
+        .card .h5.divider {
+            display: inline-block;
+            width: 75%;
+        }
+
+        .card .h1.divider:before,
+        .card .h2.divider:before,
+        .card .h3.divider:before,
+        .card .h4.divider:before,
+        .card .h5.divider:before {
+            content: "";
+            position: absolute;
+            top: 1.15rem;
+            right: -35%;
+            width: 55%;
+            height: 2px;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+        }
+
+        .card .h2 {
+            font-size: 1.8rem;
+        }
+
+        .card .left-aligned {
+            text-align: left;
+        }
+
+        .card [data-click-toggle] {
+            cursor: pointer;
+        }
+
+        .card .button {
+            padding: 1.618rem;
+            margin-bottom: 0.809rem;
+            border: 0;
+            font-weight: 700;
+            border-radius: 1.13rem;
+            outline: none;
+            transition-property: border-bottom-width, transform;
+            transition-duration: 0.05s;
+        }
+
+        .card .button--danger {
+            background-color: #e74c3c;
+            border-bottom: 3px solid #c0392b;
+            color: white;
+        }
+
+        .card .button--block {
+            display: block;
+            width: 100%;
+        }
+
+        .card .button:hover {
+            box-shadow: inset 0 100px 0 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .card .button--link {
+            background-color: transparent;
+            color: #3498db;
+            font-size: 1.412rem;
+            font-weight: normal;
+            padding-left: 0;
+        }
+
+        .card .button--link:hover {
+            box-shadow: none;
+        }
+
+        .card .button:active {
+            transform: translateY(3px);
+            border-bottom-width: 0px;
+        }
+
+        .card .checkbox {
+            display: block;
+            width: 100%;
+            font-size: 1.412rem;
+            cursor: pointer;
+        }
+
+        .card .checkbox~.checkbox {
+            margin-top: 1.412rem;
+        }
+
+        .card .checkbox:after {
+            content: "";
+            position: absolute;
+            display: block;
+            right: 0;
+            top: 0;
+            width: 4.8rem;
+            height: 2.4rem;
+            border: 1px solid gainsboro;
+            z-index: 10;
+            box-shadow: inset 2.4rem 0 0 0 #e74c3c;
+            transition: box-shadow 0.48s;
+        }
+
+        .card input[type=checkbox] {
+            display: none;
+        }
+
+        .card input[type=checkbox]:checked+.checkbox:after {
+            box-shadow: inset -2.4rem 0 0 0 #2ecc71;
+        }
+
+        /* Helpers */
+        .upper-rounded {
+            border-radius: 1.13rem 1.13rem 0 0;
+        }
+
+        .lower-rounded {
+            border-radius: 0 0 1.13rem 1.13rem;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, user-scalable = no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+    <div class="centered-container">
+        <div class="card">
+            <div class="card__front does-trick--split">
+                <div class="card__part card__part--upper upper-rounded">
+                    <div class="card__header upper-rounded">
+                        <div class="header__icon header__icon--left">&#8634;</div>
+                        <div class="header__title">
+                            Humanity Settings
+                        </div>
+                        <div class="header__icon header__icon--right" data-click-toggle="card--rotate-horizontally"
+                            data-target="card">&#8644;</div>
+                    </div>
+                    <div class="card__part-content padded--slightly left-aligned">
+                        <div class="h3 divider">
+                            General Settings
+                        </div>
+                        <input id="enableHumor" type="checkbox" /><label class="checkbox" for="enableHumor">Enable
+                            Humor?</label><input id="enableCreativity" type="checkbox" /><label class="checkbox"
+                            for="enableCreativity">Enable Creativity? </label>
+                    </div>
+                </div>
+                <div class="card__part card__part--lower lower-rounded">
+                    <div class="card__part-content padded--slightly left-aligned">
+                        <div class="h3 divider">
+                            Mental Settings
+                        </div>
+                        <input id="enableEmpathy" type="checkbox" /><label class="checkbox" for="enableEmpathy">Enable
+                            Empathy? </label><input id="enableStupidity" type="checkbox" /><label class="checkbox"
+                            for="enableStupidity">Disable Stupidity?</label>
+                    </div>
+                    <div class="card__footer lower-rounded" data-click-toggle="opened" data-target="card__front"
+                        id="adv">
+                        <small><a>View advanced settings</a></small>
+                    </div>
+                </div>
+                <div class="card__part card__part--middle centered-container left-aligned padded">
+                    <div class="h2 divider">
+                        Danger Zone
+                    </div>
+                    <button class="button button--danger button--block" data-click-toggle="opened"
+                        data-target="card__front" data-trigger-event="resetCheckboxes">Reset All
+                        Humanity</button><small>Beware, all humanity will be reset.</small>
+                </div>
+            </div>
+            <div class="card__back">
+                <div class="card__header upper-rounded">
+                    <div class="header__title">
+                        Humanity Settings
+                    </div>
+                    <div class="header__icon header__icon--right" data-click-toggle="card--rotate-horizontally"
+                        data-target="card">
+                        ⇄
+                    </div>
+                </div>
+                <div class="card__part-content padded--slightly left-aligned">
+                    <div class="h3 divider">
+                        The Flipside Quote
+                    </div>
+                    <div>
+                        “A man who wants to lead the orchestra must turn his back on the crowd.” — Max Lucado
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="popup.js"></script>
+</body>
+
 </html>

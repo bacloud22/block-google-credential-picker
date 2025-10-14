@@ -22,7 +22,7 @@
     'credential_picker_container'
   ];
 
-  console.log('ddddddddddddddddd');
+
   // Remove containers by ID
   function disableContainers() {
     CONTAINER_IDS.forEach(id => {
