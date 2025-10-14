@@ -3,18 +3,33 @@
   "name": "Block Google Credential Picker",
   "description": "Blocks the Google credential_picker_container iframe popup and native One Tap UI.",
   "version": "1.1",
-  "permissions": ["<all_urls>", "webRequest", "webRequestBlocking"],
+  "permissions": [
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking"
+  ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_start"
     }
   ],
- "icons": {
+  "browser_action": {
+    "default_icon": "icons.png",
+    "default_title": "Beastify",
+    "default_popup": "popup.html"
+  },
+  "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
