@@ -95,12 +95,14 @@
 | Exploring the Card Metaphor
 ---------------------------------------------------------
 */
-        body {
-            background-color: #1b1b1b;
-            background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/16584/space.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
+        html {
+            --s: 100px;
+            /* control the size*/
+            --c1: #4ecdc4;
+            --c2: #556270;
+
+            background:
+                linear-gradient(atan(-.5), var(--c1) 33%, var(--c2) 33.5% 66.5%, var(--c1) 67%) 0/var(--s) var(--s);
         }
 
         .centered-container {
@@ -396,6 +398,7 @@
     </style>
     <meta name="viewport" content="width=device-width, user-scalable = no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
 </head>
 
 <body>
@@ -406,7 +409,7 @@
                     <div class="card__header upper-rounded">
                         <div class="header__icon header__icon--left">&#8634;</div>
                         <div class="header__title">
-                            Humanity Settings
+                            Extension settings
                         </div>
                         <div class="header__icon header__icon--right" data-click-toggle="card--rotate-horizontally"
                             data-target="card">&#8644;</div>
@@ -416,37 +419,36 @@
                             General Settings
                         </div>
                         <input id="enableHumor" type="checkbox" /><label class="checkbox" for="enableHumor">Enable
-                            Humor?</label><input id="enableCreativity" type="checkbox" /><label class="checkbox"
+                            the extension</label><input id="enableCreativity" type="checkbox" /><label class="checkbox"
                             for="enableCreativity">Enable Creativity? </label>
                     </div>
                 </div>
                 <div class="card__part card__part--lower lower-rounded">
                     <div class="card__part-content padded--slightly left-aligned">
                         <div class="h3 divider">
-                            Mental Settings
+                            Site settings
                         </div>
                         <input id="enableEmpathy" type="checkbox" /><label class="checkbox" for="enableEmpathy">Enable
-                            Empathy? </label><input id="enableStupidity" type="checkbox" /><label class="checkbox"
+                            the extension </label><input id="enableStupidity" type="checkbox" /><label class="checkbox"
                             for="enableStupidity">Disable Stupidity?</label>
                     </div>
                     <div class="card__footer lower-rounded" data-click-toggle="opened" data-target="card__front"
                         id="adv">
-                        <small><a>View advanced settings</a></small>
+                        <small><a>Our word</a></small>
                     </div>
                 </div>
                 <div class="card__part card__part--middle centered-container left-aligned padded">
                     <div class="h2 divider">
-                        Danger Zone
+                        Our word
                     </div>
                     <button class="button button--danger button--block" data-click-toggle="opened"
-                        data-target="card__front" data-trigger-event="resetCheckboxes">Reset All
-                        Humanity</button><small>Beware, all humanity will be reset.</small>
+                        data-target="card__front" data-trigger-event="resetCheckboxes">Donate</button><small>Beware, all humanity will be reset.</small>
                 </div>
             </div>
             <div class="card__back">
                 <div class="card__header upper-rounded">
                     <div class="header__title">
-                        Humanity Settings
+                        Extension settings
                     </div>
                     <div class="header__icon header__icon--right" data-click-toggle="card--rotate-horizontally"
                         data-target="card">
@@ -466,6 +468,7 @@
     </div>
     <script src="jquery.min.js"></script>
     <script src="popup.js"></script>
+    <script src="quotes.js"></script>
 </body>
 
 </html>

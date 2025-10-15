@@ -1,5 +1,5 @@
 // Block Google One Tap and credential picker containers
-(function() {
+(function () {
   'use strict';
 
   // IDs of containers to remove
@@ -42,3 +42,4 @@
   `;
   document.documentElement.appendChild(style);
 })();
+

@@ -63,3 +63,7 @@
   `;
   document.documentElement.appendChild(style);
 })();
+
+
+
+// browser.browserAction.setIcon
