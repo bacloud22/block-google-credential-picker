@@ -6,7 +6,13 @@
   "permissions": [
     "<all_urls>",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*/*"
   ],
   "background": {
     "scripts": [

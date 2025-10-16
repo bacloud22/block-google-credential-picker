@@ -282,6 +282,7 @@
         .card .h5.divider {
             display: inline-block;
             width: 75%;
+            font-size: smaller;
         }
 
         .card .h1.divider:before,
@@ -312,7 +313,7 @@
         }
 
         .card .button {
-            padding: 1.618rem;
+            padding: 1rem;
             margin-bottom: 0.809rem;
             border: 0;
             font-weight: 700;
@@ -436,18 +437,18 @@
                     </div>
                 </div>
                 <div class="card__part card__part--lower lower-rounded">
-                    <div class="card__part-content padded--slightly left-aligned">
-                        <div class="h3 divider">
-                            Site settings
-                        </div>
-                        <input id="enableEmpathy" type="checkbox" /><label class="checkbox" for="enableEmpathy">Enable
-                            the extension </label><input id="enableStupidity" type="checkbox" /><label class="checkbox"
-                            for="enableStupidity">Disable Stupidity?</label>
+                <div class="card__part-content padded--slightly left-aligned">
+                    <div class="h3 divider">Site settings</div>
+                    <input id="enableDomain" type="checkbox" />
+                    <label class="checkbox" for="enableDomain">Enable the extension for this site</label>
+
+                    <div id="blockedCounter" class="h4" style="margin-top: 1rem;">
+                    Blocked popups: <span id="blockedCount">0</span>
                     </div>
-                    <div class="card__footer lower-rounded" data-click-toggle="opened" data-target="card__front"
-                        id="adv">
-                        <small><a>Our word</a></small>
-                    </div>
+                </div>
+                <div class="card__footer lower-rounded" data-click-toggle="opened" data-target="card__front" id="adv">
+                    <small><a>Our word</a></small>
+                </div>
                 </div>
                 <div class="card__part card__part--middle centered-container left-aligned padded">
                     <div class="h2 divider">
