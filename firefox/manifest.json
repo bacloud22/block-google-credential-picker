@@ -11,9 +11,6 @@
     "tabs",
     "activeTab"
   ],
-  "host_permissions": [
-    "*://*/*"
-  ],
   "background": {
     "scripts": [
       "background.js"
