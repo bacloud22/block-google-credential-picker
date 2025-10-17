@@ -17,6 +17,7 @@
 
   const getSettings = async () => {
     const { enabledGlobally, enabledForDomains } = await browser.storage.local.get(['enabledGlobally', 'enabledForDomains']);
+
     return {
       enabledGlobally: enabledGlobally !== false, // default true
       enabledForDomain: enabledForDomains?.[domain] !== false // default true
@@ -24,6 +25,7 @@
   };
 
   const incrementBlockedCount = async () => {
+    console.log('[Extension] Incrementing blocked count.');
     const { blockedCount = 0 } = await browser.storage.local.get('blockedCount');
     await browser.storage.local.set({ blockedCount: blockedCount + 1 });
   };
