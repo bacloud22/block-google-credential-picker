@@ -4,6 +4,7 @@ This browser extension blocks the Google One Tap sign-in popup and the credentia
 It provides a cleaner browsing experience by removing the native Google sign-in prompt.
 
 ![Google One Tap sign-in popup](.github/capture.webp?raw=true "Google One Tap sign-in popup")
+<img width="1322" height="812" alt="image" src="https://github.com/user-attachments/assets/7f20d879-b054-4ad8-b013-525efe29ba05" />
 
 
 ## Features
