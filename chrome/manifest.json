@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Block Google Credential Picker",
+  "name": "GhostGLogin",
   "description": "Blocks Google credential picker iframe and native One Tap UI.",
   "version": "1.1",
   "permissions": [
